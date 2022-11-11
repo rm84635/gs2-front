@@ -52,28 +52,23 @@ app.get('/', (_, res) => {
 });
 
 app.get('/delete/ambiente/:id', (req, res) => {
-  axios.delete(`${baseURL}/ambiente/${req.params.id}`, config);
-  res.redirect('/');
+  axios.delete(`${baseURL}/ambiente/${req.params.id}`, config).then(_ => res.redirect('/'));
 });
 
 app.get('/delete/veiculo/:id', (req, res) => {
-  axios.delete(`${baseURL}/veiculo/${req.params.id}`, config);
-  res.redirect('/');
+  axios.delete(`${baseURL}/veiculo/${req.params.id}`, config).then(_ => res.redirect('/'));
 });
 
 app.post('/ambiente', (req, res) => {
-  axios.post(`${baseURL}/ambiente`, req.body, config);
-  res.redirect('/');
+  axios.post(`${baseURL}/ambiente`, req.body, config).then(_ => res.redirect('/'));
 });
 
 app.post('/veiculo', (req, res) => {
   axios.get(`${baseURL}/ambiente/${req.body.ambiente}`, config)
     .then(response => {
       req.body.ambiente = response.data;
-      axios.post(`${baseURL}/veiculo`, req.body, config);
+      axios.post(`${baseURL}/veiculo`, req.body, config).then(_ => res.redirect('/'));
     });
-
-  res.redirect('/');
 });
 
 app.listen(port, () => {
