@@ -67,7 +67,12 @@ app.post('/ambiente', (req, res) => {
 });
 
 app.post('/veiculo', (req, res) => {
-  axios.post(`${baseURL}/veiculo`, req.body, config);
+  axios.get(`${baseURL}/ambiente/${req.body.ambiente}`, config)
+    .then(response => {
+      req.body.ambiente = response.data;
+      axios.post(`${baseURL}/veiculo`, req.body, config);
+    });
+
   res.redirect('/');
 });
 
