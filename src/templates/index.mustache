@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="./css/custom.css" />
+
+        <title>GS 2 - Front</title>
+    </head>
+    <body>
+        <header>
+            <h1>GS 2</h1>
+            <p>Interface para a GS 2 de microservices (3 SIS)</p>
+            <p>Nícolas Garcia (RM 84635), Julio Facal (RM 84125), Leticia Pfitzenmeier (RM 84906)</p>
+        </header>
+
+        <main class="container">
+            <div class="ambientes">
+                <h2>Ambientes</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Local</th>
+                            <th scope="col">Temperatura</th>
+                            <th scope="col">Qualidade do Ar</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{# ambientes }}
+                            <tr>
+                                <td>{{ id }}</td>
+                                <td>{{ local }}</td>
+                                <td>{{ temperatura }}°C</td>
+                                <td>{{ qualidadeAr }}</td>
+                            </tr>
+                        {{/ ambientes }}
+
+                        {{^ ambientes }}
+                            Não há veículos cadastrados
+                        {{/ ambientes }}
+                    </tbody>
+                </table>
+
+                <form method="POST" action="/ambiente">
+                    <div class="mb-3">
+                      <label for="local" class="form-label">Local</label>
+                      <input type="text" class="form-control" id="local" name="local" />
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="temperatura" class="form-label">Temperatura (°C)</label>
+                        <input type="text" class="form-control" id="temperatura" name="temperatura" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qualidadeAr" class="form-label">Qualidade do Ar</label>
+                        <input type="text" class="form-control" id="qualidadeAr" name="qualidadeAr" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="veiculos">
+                <h2>Veículos</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Placa</th>
+                            <th scope="col">Quilometragem</th>
+                            <th scope="col">Ambiente</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{# veiculos }}
+                            <tr>
+                                <td>{{ id }}</td>
+                                <td>{{ marca }}</td>
+                                <td>{{ modelo }}</td>
+                                <td>{{ placa }}</td>
+                                <td>{{ quilometragem }}</td>
+                                <td>
+                                    {{# ambiente }}
+                                        {{ local }} | {{ temperatura }}°C | {{qualidadeAr}}
+                                    {{/ ambiente }}
+                                </td>
+                                <td>-</td>
+                            </tr>
+                        {{/ veiculos }}
+
+                        {{^ veiculos }}
+                            Não há veículos cadastrados
+                        {{/ veiculos }}
+                    </tbody>
+                </table>
+
+                {{# mostrar_form_veiculos }}
+                    <form method="POST" action="/veiculo">
+                        <div class="mb-3">
+                        <label for="marca" class="form-label">Marca</label>
+                        <input type="text" class="form-control" id="marca" name="marca" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="modelo" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="placa" class="form-label">Placa</label>
+                            <input type="text" class="form-control" id="placa" name="placa" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="quilometragem" class="form-label">Quilometragem</label>
+                            <input type="text" class="form-control" id="quilometragem" name="quilometragem" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ambiente" class="form-label">Ambiente</label>
+                            <select name="ambiente">
+                                {{# ambientes }}
+                                    <option value="{{ id }}">
+                                        {{ local }} | {{ temperatura }}°C | {{qualidadeAr}
+                                    </option>
+                                {{/ ambientes }}
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    </form>
+                {{# mostrar_form_veiculos }}
+            </div>
+        </main>
+    </body>
+</html>

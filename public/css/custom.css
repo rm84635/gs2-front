@@ -1,0 +1,26 @@
+header {
+    width: 100%;
+    background: #ededed;
+    padding: 80px;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+main {
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.ambientes table {
+    margin-bottom: 50px;
+}
+
+.veiculos {
+    margin-top: 60px;
+}
+
+.veiculos table {
+    margin-bottom: 50px;
+}
