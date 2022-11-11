@@ -42,7 +42,7 @@
                         {{/ ambientes }}
 
                         {{^ ambientes }}
-                            Não há veículos cadastrados
+                            <tr> Não há ambientes cadastrados </tr>
                         {{/ ambientes }}
                     </tbody>
                 </table>
@@ -62,6 +62,7 @@
                         <label for="qualidadeAr" class="form-label">Qualidade do Ar</label>
                         <input type="text" class="form-control" id="qualidadeAr" name="qualidadeAr" />
                     </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>
 
@@ -94,12 +95,12 @@
                                         {{ local }} | {{ temperatura }}°C | {{qualidadeAr}}
                                     {{/ ambiente }}
                                 </td>
-                                <td>-</td>
+                                <td><a class="btn btn-danger" href="/delete/veiculo/{{ id }}">Deletar</a></td>
                             </tr>
                         {{/ veiculos }}
 
                         {{^ veiculos }}
-                            Não há veículos cadastrados
+                            <tr> Não há veículos cadastrados </tr>
                         {{/ veiculos }}
                     </tbody>
                 </table>
@@ -131,7 +132,7 @@
                             <select name="ambiente">
                                 {{# ambientes }}
                                     <option value="{{ id }}">
-                                        {{ local }} | {{ temperatura }}°C | {{qualidadeAr}
+                                        {{ local }} | {{ temperatura }}°C | {{qualidadeAr}}
                                     </option>
                                 {{/ ambientes }}
                             </select>
@@ -139,7 +140,7 @@
                         
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
                     </form>
-                {{# mostrar_form_veiculos }}
+                {{/ mostrar_form_veiculos }}
             </div>
         </main>
     </body>
