@@ -1,5 +1,9 @@
 # GS2 Front
 
+- Nícolas Garcia (RM 84635)
+- Julio Facal (RM 84125)
+- Leticia Pfitzenmeier (RM 84906)
+
 ### Pré-requisitos
 
 1. Ter o projeto da API localmente (https://github.com/rm84635/gs2-api)
